@@ -1,53 +1,73 @@
-<%- include('../partials/head') %> 
+<!doctype html>
+<html lang="en">
+
+    <%- include('../partials/head') %> 
 
 <body>
     <%- include('../partials/header') %>
+
     <main>
         <section>
-            <h2>Crea tu cuenta</h2>
-            <form id="formulario">
+            <div>
                 <div>
-                    <input 
-                        type="text" 
-                        name="usuario" 
-                        value=""/>
-                    <label>Nombre y apellido</label>
+                    <div>
+                        <div>
+                            <h2>Creá tu cuenta</h2>
+                            <form action="/users/profile" method="POST" enctype="multipart/form-data">
+                                <div>
+                                    <input type="text" name="usuario" value="<%= locals.oldData ? oldData.usuario : null %>"/>
+                                    <label>Usuario</label>
+                                    <% if (locals.errors && errors.usuario) { %>
+                                        <div>
+                                            <%= errors.usuario.msg  %>
+                                        </div>
+                                    <% } %>
+                                </div>
+                                <div>
+                                    <input type="" name="email" value="<%= locals.oldData ? oldData.email : null %>"/>
+                                    <label>Email</label>
+                                    <% if (locals.errors && errors.email) { %>
+                                        <div>
+                                            <%= errors.email.msg  %>
+                                        </div>
+                                    <% } %>
+                                </div>
+                                <div>
+                                    <input type="password" name="password"/>
+                                    <label>Contraseña</label>
+                                    <% if (locals.errors && errors.password) { %>
+                                        <div>
+                                            <%= errors.password.msg  %>
+                                        </div>
+                                    <% } %>
+                                </div>
+                                <div>
+                                    <input name="img" type="file" name="img"/>
+                                    <label>Seleccionar foto de perfil</label>
+                                    <% if (locals.errors && errors.img) { %>
+                                        <div>
+                                            <%= errors.img.msg  %>
+                                        </div>
+                                    <% } %>
+                                </div>
+                                <div>
+                                    <input type="checkbox" value="" />
+                                    <label>Estoy de acuerdo con todas las declaraciones en <a href="#!"><u>Términos de servicio</u></a>
+                                    </label>
+                                </div>
+                                <div>
+                                    <button type="submit">Registrarse</button>
+                                </div>
+                                <p>Ya tenes una cuenta? 
+                                <a href="/users/login"><u>Acceda aquí</u></a></p>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        value=""/>
-                    <label>Email</label>
-                </div>
-                <div>
-                    <input type="tel" name="telefono" value=""/>
-                    <label>Número telefónico</label>
-                </div>
-                <div>
-                    <input type="checkbox" value="" />
-                    <label>Estoy de acuerdo con todas las declaraciones en <a href="#!" class=""><u>Términos de servicio</u></a></label>
-                </div>
-                <div>
-                    <button type="submit">Pedir regalo</button>
-                </div>
-            </form>
+            </div>
         </section>
     </main>
     <%- include('../partials/footer') %>
 </body>
-
-<script>
-document.getElementById('formulario').addEventListener('submit', function(e) {
-    e.preventDefault(); // Evitamos que se envíe el formulario
-
-    // Formamos el URL de WhatsApp con los datos del formulario
-    let usuario = encodeURIComponent(e.target.usuario.value);
-    let url = `https://api.whatsapp.com/send/?phone=593987524032&text=Hola%2C+${usuario}+te+hablo+porque+quiero+pedirte+el+regalo+y+la+posibilidad+de+tener+una+asesor%C3%ADa+gratuita&type=phone_number&app_absent=0`;
-
-    // Redirigimos al usuario a la URL de WhatsApp
-    window.location.href = url;
-});
-</script>
 
 </html>
