@@ -1,67 +1,54 @@
 <!doctype html>
 <html lang="en">
-
     <%- include('../partials/head') %> 
-
 <body>
     <%- include('../partials/header') %>
-
     <main>
         <section>
-            <div>
-                <div>
-                    <div>
-                        <div>
-                            <h2>Creá tu cuenta</h2>
-                            <form action="/users/profile" method="POST" enctype="multipart/form-data">
-                                <div>
-                                    <input type="text" name="usuario" value="<%= locals.oldData ? oldData.usuario : null %>"/>
-                                    <label>Usuario</label>
-                                    <% if (locals.errors && errors.usuario) { %>
-                                        <div>
-                                            <%= errors.usuario.msg  %>
-                                        </div>
-                                    <% } %>
-                                </div>
-                                <div>
-                                    <input type="" name="email" value="<%= locals.oldData ? oldData.email : null %>"/>
-                                    <label>Email</label>
-                                    <% if (locals.errors && errors.email) { %>
-                                        <div>
-                                            <%= errors.email.msg  %>
-                                        </div>
-                                    <% } %>
-                                </div>
-                                <div>
-                                    <input type="password" name="password"/>
-                                    <label>Contraseña</label>
-                                    <% if (locals.errors && errors.password) { %>
-                                        <div>
-                                            <%= errors.password.msg  %>
-                                        </div>
-                                    <% } %>
-                                </div>
-                                <div>
-                                    <input name="img" type="file" name="img"/>
-                                    <label>Seleccionar foto de perfil</label>
-                                    <% if (locals.errors && errors.img) { %>
-                                        <div>
-                                            <%= errors.img.msg  %>
-                                        </div>
-                                    <% } %>
-                                </div>
-                                <div>
-                                    <input type="checkbox" value="" />
-                                    <label>Estoy de acuerdo con todas las declaraciones en <a href="#!"><u>Términos de servicio</u></a>
-                                    </label>
-                                </div>
-                                <div>
-                                    <button type="submit">Registrarse</button>
-                                </div>
-                                <p>Ya tenes una cuenta? 
-                                <a href="/users/login"><u>Acceda aquí</u></a></p>
-                            </form>
-                        </div>
+            <div class="contenedorSectionCompuesto">
+                <div class="contenedorSectionSimple">
+                    <div class="contenedorSectionInput">
+                        <form action="/users/register" method="POST">
+                            <div class="contenedorSectionPlacehold">
+                                <input type="text" name="nombre" value="<%= locals.oldData ? oldData.nombre : null %>"/>
+                                <label>Nombre</label>
+                                <% if (locals.errors && errors.nombre) { %>
+                                    <div>
+                                        <%= errors.nombre.msg  %>
+                                    </div>
+                                <% } %>
+                            </div>
+                            <div class="contenedorSectionPlacehold">
+                                <input type="text" name="apellido" value="<%= locals.oldData ? oldData.apellido : null %>"/>
+                                <label>Apellido</label>
+                                <% if (locals.errors && errors.apellido) { %>
+                                    <div>
+                                        <%= errors.apellido.msg  %>
+                                    </div>
+                                <% } %>
+                            </div>
+                            <div class="contenedorSectionPlacehold">
+                                <input type="email" name="email" value="<%= locals.oldData ? oldData.email : null %>"/>
+                                <label>Email</label>
+                                <% if (locals.errors && errors.email) { %>
+                                    <div>
+                                        <%= errors.email.msg  %>
+                                    </div>
+                                <% } %>
+                            </div>
+                            <div class="contenedorSectionPlacehold">
+                                <input type="tel" name="telefono" value="<%= locals.oldData ? oldData.telefono : null %>"/>
+                                <label>Teléfono</label>
+                                <% if (locals.errors && errors.telefono) { %>
+                                    <div>
+                                        <%= errors.telefono.msg  %>
+                                    </div>
+                                <% } %>
+                            </div>
+                            <div class="contenedorSectionBotón">
+                                <button type="submit">Registrarse</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -69,5 +56,4 @@
     </main>
     <%- include('../partials/footer') %>
 </body>
-
 </html>

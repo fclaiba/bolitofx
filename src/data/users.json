@@ -1,8 +1,23 @@
 [
  {
   "id": 1,
-  "usuario": "juan",
+  "nombre": "Juan",
+  "apellido": "Perez",
   "email": "juan@gmail.com",
-  "telefono": "password"
+  "telefono": "+54224445566"
+ },
+ {
+  "id": 2,
+  "nombre": "Maria",
+  "apellido": "Gomez",
+  "email": "maria@gmail.com",
+  "telefono": "+54224445567"
+ },
+ {
+  "id": 3,
+  "nombre": "123",
+  "apellido": "123",
+  "email": "pedro@gmail.com",
+  "telefono": "12345"
  }
 ]

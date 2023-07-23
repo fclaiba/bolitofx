@@ -3,7 +3,16 @@ const fs = require('fs');
 const usersJSON = path.join(__dirname, '../data/users.json');
 const users = JSON.parse(fs.readFileSync(usersJSON, 'utf-8'))
 const { validationResult, body, cookie } = require('express-validator');
-const bycriptjs = require('bcryptjs')
+const AWS = require('aws-sdk'); // <-- Agrega esta línea
+
+AWS.config.update({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_REGION
+});
+
+// Corrige el desfase de tiempo
+AWS.config.systemClockOffset = 0;
 
 const controllerUser = {
 
@@ -33,7 +42,6 @@ const controllerUser = {
         let allUser = controllerUser.findAll();
         let newUser = {
             id: controllerUser.generateId(),
-        
             ...userData
         }
         allUser.push(newUser);
@@ -50,14 +58,6 @@ const controllerUser = {
         return 1;
     },
 
-    delete: (id) => {
-        let allUser = controllerUser.findAll();
-        let finalUsers = allUser.filter(oneUser => oneUser.id !== id);
-        fs.writeFileSync(controllerUser.fileName, JSON.stringify(finalUsers, null, ' '));
-        return true;
-    },
-
-    
     registerProcess: (req,res) => {
         
         const resultValidation = validationResult(req);
@@ -83,67 +83,49 @@ const controllerUser = {
         
         let userToCreate = {
             ...req.body,
-            img: req.file.filename,
-            password: bycriptjs.hashSync(req.body.password, 10)
         }
         
-        
         let userCreate = controllerUser.create(userToCreate)
-        return res.redirect('login')
+
+        // Configura el SDK con tus credenciales
+        AWS.config.update({
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+        });
+
+        // Crea un objeto S3
+        const s3 = new AWS.S3();
+
+        // Lee el archivo .json de tu sistema de archivos
+        const fileContent = fs.readFileSync(usersJSON); // <-- Cambia 'userCreate.json' a 'users.json'
+
+        // Define los parámetros para la subida
+        const params = {
+            Bucket: 'bolitofx',
+            Key: 'users.json', // Nombre del archivo a guardar en S3
+            Body: fileContent
+        };
+
+        // Imprime el nombre del bucket para asegurarte de que se está estableciendo correctamente
+        console.log("Bucket name: ", process.env.S3_BUCKET_NAME);
+
+        // Sube el archivo a S3
+        s3.upload(params, function(err, data) {
+            if (err) {
+                throw err;
+            }
+            console.log(`Archivo subido exitosamente a ${data.Location}`);
+        });
+
+        // redirect to WhatsApp with message
+        let whatsappMessage = `Hola, le habla ${userCreate.nombre} ${userCreate.apellido}. Me comunico con usted para consultar si cuento con la posibilidad de obtener mi sesión de asesoría gratuita`;
+        let encodedMessage = encodeURIComponent(whatsappMessage);
+        return res.redirect(`https://wa.me/+593987524032?text=${encodedMessage}`);
     },
     
     register: (req,res) =>{
         res.render("users/register")
     },
-    
-    profile: (req,res) => {
-        return res.render("users/profile", {
-            user: req.session.userLogged
-        });
-    },
-
-    logout: (req, res) => {
-        res.clearCookie('userEmail');
-        req.session.destroy();
-        return res.redirect('/')
-    },
-
-    login: (req,res) => {
-        return res.render("users/login");
-    },
-    
-    loginProcess: (req,res) => {
-        let userToLogin = controllerUser.findByField('email', req.body.email);
-        if(userToLogin){
-            let isOkThePassword = bycriptjs.compareSync(req.body.password, userToLogin.password)
-            if (isOkThePassword){
-                delete userToLogin.password;
-                req.session.userLogged = userToLogin;
-
-                if(req.body.remember_user){
-                    res.cookie('userEmail', req.body.email, { maxAge: (60000 * 60) })
-                }
-                
-                return res.redirect("/users/profile")
-            }
-            return res.render('users/login', {
-                errors: {
-                    email: {
-                        msg: 'Las credenciales son invalidas'
-                    }
-                }
-        });
-    }
-
-        return res.render('users/login', {
-            errors: {
-                email: {
-                    msg: 'El mail es incorrecto'
-                }
-            }
-        });
-    }
 }
-
 
 module.exports = controllerUser;
