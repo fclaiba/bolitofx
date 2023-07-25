@@ -1,8 +1,370 @@
-/* Estilo general */
+
+
+/* Reset de márgenes y padding predeterminados para el body y html */
+html,
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f5f5f5;
+  margin: 0;
+  padding: 0;
 }
+
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background-color: #D9D9D9;
+}
+
+/* Resto del CSS */
+
+/* Header styles */
+header {
+  width: 100%;
+  height: 20vh;
+  border-radius: 0 0 2rem 2rem;
+  background: linear-gradient(180deg, #7D92BD 0%, rgba(0, 44, 107, 0.75) 99.99%, rgba(125, 146, 189, 0.85) 100%);
+}
+
+.contenedorLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  padding-top: 3rem;
+  background: transparent;
   
+}
+
+#logoHeader img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Main styles */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  width: 90%;
+  max-width: 1200px; /* Máximo ancho del contenido */
+  margin: 30px auto;
+}
+
+.contenedorSectionCompuesto {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.contenedorSectionCompuesto > * {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#contenedorSectionCompuesto {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+#contenedorSectionCompuesto > * {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedorSectionInput, .contenedorSectionPlacehold {
+  display: flex;
+  flex-direction: column;
+  padding:10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedorSectionInput, .contenedorSectionPlacehold #botónRegistro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.contenedorSectionImput .contenedorSectionBotón {
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+  height: auto;
+  border-radius: 3rem;
+  background: rgba(0, 44, 107, 0.35);
+  mix-blend-mode: multiply;
+}
+
+.contenedorSectionInput .contenedorSectionBotón #botónRegistro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  border-radius: 3rem;
+  background: rgba(0, 44, 107, 0.35);
+  mix-blend-mode: multiply;
+}
+
+#section {
+  display: flex;
+  width: 75%;
+  height: auto;
+  flex-direction: column;
+}
+
+.contenedorSectionBotón {
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+  height: auto;
+  border-radius: 3rem;
+  background: rgba(0, 44, 107, 0.35);
+  mix-blend-mode: multiply;
+}
+
+.contenedorSectionSimple {
+  border-radius: 1.5rem;
+  border: 1px solid #000;
+  padding: 1rem;
+  margin-bottom: 30px;
+}
+
+#contenedorSectionSimple {
+  border-radius: 1.5rem;
+  padding: 1rem;
+  margin-bottom: 30px;
+}
+
+.contenedorSectionSimple > * {
+  color: rgba(0, 44, 107, 0.70);
+  text-align: center;
+}
+
+.contenedorSectionSimple ul li {
+  list-style: none
+}
+
+h2 {
+  color: rgba(0, 44, 107, 0.85);
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-top: 0;
+}
+
+p {
+  color: rgba(0, 44, 107, 0.70);
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 1rem;
+  margin-top: 0;
+}
+
+ul {
+  padding: 0 1rem;
+}
+
+a {
+  color: rgba(0, 44, 107, 0.80);
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.5;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.8rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+/* Footer styles */
+footer {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-radius: 2.5rem 2.5rem 0 0;
+  background: linear-gradient(180deg, rgba(0, 44, 107, 0.70) 4.17%, rgba(0, 44, 107, 0.85) 61.46%, #002C6B 100%);
+}
+
+.contenedorGeneralFooter,
+.contenedorInfoFooter,
+.contenedorInfoContactoFooter,
+.contenedorInfoContactoFooterMargenEscritura,
+.contenedorRRSSFooter,
+.contenedorLegalesFooter,
+.contenedorLegalesFooterMargenEscritura {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+#títuloDatosContacto {
+  text-align: center;
+  color: #EEF0ED;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1rem;
+  padding: 2rem 0 1rem;
+  margin: 0;
+}
+
+#subtítuloDatosContacto {
+  text-align: center;
+  color: #EEF0ED;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1rem;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+#subtítuloDatosContacto {
+  color: #EEF0ED;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1rem;
+}
+
+.contenedorRRSSFooter {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.contenedorRRSSFooter a i {
+  color: #EEF0ED;
+}
+
+.contenedorLegalesFooter,
+.contenedorLegalesFooterMargenEscritura {
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedorLegalesFooter .rights,
+.contenedorLegalesFooter .terms {
+  display: flex;
+  color: #D9D9D9;
+  padding: 0 0.5rem;
+  margin-bottom: 0;
+  font-size: 0.75rem;
+}
+
+/* Responsive styles */
+@media (min-width: 769px) {
+  body {
+    font-size: 1.125rem;
+  }
+
+  header {
+    height: 25vh;
+  }
+
+  #logoHeader img {
+    width: 9.375rem;
+    height: auto;
+  }
+
+  main {
+    width: 80%;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 1.875rem;
+  }
+
+  ul {
+    font-size: 1.875rem;
+  }
+
+  a {
+    font-size: 1.875rem;
+  }
+
+  footer {
+    padding: 1.875rem;
+  }
+
+  #títuloDatosContacto,
+  #subtítuloDatosContacto {
+    font-size: 1.125rem;
+  }
+
+  .contenedorRRSSFooter {
+    padding: 1.875rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  body {
+    font-size: 1.25rem;
+  }
+
+  header {
+    height: 31.25vh;
+  }
+
+  #logoHeader img {
+    width: 12.5rem;
+    height: auto;
+  }
+
+  main {
+    width: 70%;
+  }
+
+  h2 {
+    font-size: 2.8125rem;
+  }
+
+  p {
+    font-size: 1.875rem;
+  }
+
+  ul {
+    font-size: 1.875rem;
+  }
+
+  a {
+    font-size: 2.1875rem;
+  }
+
+  footer {
+    padding: 2.5rem;
+  }
+
+  #títuloDatosContacto,
+  #subtítuloDatosContacto {
+    font-size: 1.25rem;
+  }
+
+  .contenedorRRSSFooter {
+    padding: 2.5rem;
+  }
+}
+
+/* Agregamos una media query para ajustar .contenedorSectionSimple en pantallas pequeñas */
+@media (max-width: 250px) {
+  .contenedorSectionCompuesto {
+    flex-direction: column;
+  }
+}
+

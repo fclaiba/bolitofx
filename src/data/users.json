@@ -19,5 +19,19 @@
   "apellido": "123",
   "email": "pedro@gmail.com",
   "telefono": "12345"
+ },
+ {
+  "id": 4,
+  "nombre": "pedro",
+  "apellido": "gómez",
+  "email": "pedrogomez@gmail.com",
+  "telefono": "123456766"
+ },
+ {
+  "id": 5,
+  "nombre": "pedro123",
+  "apellido": "gomez",
+  "email": "email@email.com",
+  "telefono": "123456"
  }
 ]
